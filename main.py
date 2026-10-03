@@ -53,6 +53,27 @@ def Load(
         case _:
             raise ValueError(f"Unsupported format: {format}")
 
+CNNExpert = cnn
+FNNExpert = fnn
+RNNExpert = rnn
+GANExpert = gan
+LSTMExpert = lstm
+TransExpert = transf
+
+
+def MultimodalRouter(input: any):
+
+    router_classifier = model()
+
+    options = {
+        'cnn': CNNExpert(),
+        'fnn': FNNExpert,
+        'rnn': RNNExpert,
+        'gan': GANExpert,
+        'lstm': LSTMExpert,
+        'transf': TransExpert 
+    }
+
 def main():
 
     if (torch.cuda.is_available()):
