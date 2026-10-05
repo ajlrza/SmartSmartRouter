@@ -13,19 +13,15 @@ class fnn(nn.Module):
 
     prec: np.float1
     
-    def __init__(self, prec: np.float16 | np.float32 | np.float64 | np.float96 | np.float128) -> None:
+    def __init__(
+        self, 
+        prec: np.float16 | np.float32 | np.float64 | np.float96 | np.float128,
+        in_feat: int, 
+        out_feat: int) -> None:
         
         super().__init__()
 
-
-    # Backpropagation Algorithm
-    def __backprop(self, inp: torch.Tensor, out: torch.Tensor):
-        
-        return torch.autograd.grad(inp, out)
-
-    def fit(self, in_feat: int, out_feat: int, x_train: nn.Sequential, y_train: nn.Sequential, epoch_num: int):
-
-        layers = nn.Sequential(
+         self.layers = nn.Sequential(
             nn.Linear(in_feat, out_feat),
             nn.ReLU(),
             nn.Linear(out_feat, in_feat),
@@ -35,12 +31,14 @@ class fnn(nn.Module):
             nn.Linear(out_feat, in_feat)
         )
 
+    def fit(self, epoch_num: int):
+
         for i in range(epoch_num):
             
-            forward_pass = layers.forward
+            forward_pass = self.layers.forward()
             print(forward_pass)
         
-            backprop = self.__backprop(forward_pass)
+            backprop = torch.autograd.grad(forward_pass)
             print(backprop)
 
             print(f"Training loss: {loss}")
@@ -55,19 +53,16 @@ class cnn(nn.Module):
 
     prec: np.float1
     
-    def __init__(self, prec: np.float16 | np.float32 | np.float64 | np.float96 | np.float128) -> None:
+    def __init__(
+        self, 
+        prec: np.float16 | np.float32 | np.float64 | np.float96 | np.float128,
+        in_feat: int, 
+        out_feat: int
+        ) -> None:
         
         super().__init__()
 
-
-    # Backpropagation Algorithm
-    def __backprop(self, inp: torch.Tensor, out: torch.Tensor):
-        
-        return torch.autograd.grad(inp, out)
-
-    def fit(self, in_feat: int, out_feat: int, x_train: nn.Sequential, y_train: nn.Sequential, epoch_num: int):
-
-        layers = nn.Sequential(
+        self.layers = nn.Sequential(
             nn.Linear(in_feat, out_feat),
             nn.ReLU(),
             nn.Linear(out_feat, in_feat),
@@ -77,12 +72,14 @@ class cnn(nn.Module):
             nn.Linear(out_feat, in_feat)
         )
 
+    def fit(self, epoch_num: int):
+
         for i in range(epoch_num):
             
-            forward_pass = layers.forward
+            forward_pass = self.layers.forward()
             print(forward_pass)
         
-            backprop = self.__backprop(forward_pass)
+            backprop = torch.autograd.grad(forward_pass)
             print(backprop)
 
             print(f"Training loss: {loss}")
@@ -97,19 +94,15 @@ class rnn(nn.Module):
 
     prec: np.float1
     
-    def __init__(self, prec: np.float16 | np.float32 | np.float64 | np.float96 | np.float128) -> None:
+    def __init__(
+        self, 
+        prec: np.float16 | np.float32 | np.float64 | np.float96 | np.float128,
+        in_feat: int, 
+        out_feat: int) -> None:
         
         super().__init__()
 
-
-    # Backpropagation Algorithm
-    def __backprop(self, inp: torch.Tensor, out: torch.Tensor):
-        
-        return torch.autograd.grad(inp, out)
-
-    def fit(self, in_feat: int, out_feat: int, x_train: nn.Sequential, y_train: nn.Sequential, epoch_num: int):
-
-        layers = nn.Sequential(
+        self.layers = nn.Sequential(
             nn.Linear(in_feat, out_feat),
             nn.ReLU(),
             nn.Linear(out_feat, in_feat),
@@ -119,12 +112,14 @@ class rnn(nn.Module):
             nn.Linear(out_feat, in_feat)
         )
 
+    def fit(self, epoch_num: int):
+
         for i in range(epoch_num):
             
-            forward_pass = layers.forward
+            forward_pass = self.layers.forward()
             print(forward_pass)
         
-            backprop = self.__backprop(forward_pass)
+            backprop = torch.autograd.grad(forward_pass)
             print(backprop)
 
             print(f"Training loss: {loss}")
@@ -139,19 +134,15 @@ class gan(nn.Module):
 
     prec: np.float1
     
-    def __init__(self, prec: np.float16 | np.float32 | np.float64 | np.float96 | np.float128) -> None:
+    def __init__(
+        self, 
+        prec: np.float16 | np.float32 | np.float64 | np.float96 | np.float128,
+        in_feat: int, 
+        out_feat: int) -> None:
         
         super().__init__()
 
-
-    # Backpropagation Algorithm
-    def __backprop(self, inp: torch.Tensor, out: torch.Tensor):
-        
-        return torch.autograd.grad(inp, out)
-
-    def fit(self, in_feat: int, out_feat: int, x_train: nn.Sequential, y_train: nn.Sequential, epoch_num: int):
-
-        layers = nn.Sequential(
+        self.layers = nn.Sequential(
             nn.Linear(in_feat, out_feat),
             nn.ReLU(),
             nn.Linear(out_feat, in_feat),
@@ -161,12 +152,14 @@ class gan(nn.Module):
             nn.Linear(out_feat, in_feat)
         )
 
+    def fit(self, epoch_num: int):
+
         for i in range(epoch_num):
             
-            forward_pass = layers.forward
+            forward_pass = self.layers.forward()
             print(forward_pass)
         
-            backprop = self.__backprop(forward_pass)
+            backprop = torch.autograd.grad(forward_pass)
             print(backprop)
 
             print(f"Training loss: {loss}")
@@ -181,19 +174,15 @@ class lstm(nn.Module):
 
     prec: np.float1
     
-    def __init__(self, prec: np.float16 | np.float32 | np.float64 | np.float96 | np.float128) -> None:
+    def __init__(
+        self, 
+        prec: np.float16 | np.float32 | np.float64 | np.float96 | np.float128,
+        in_feat: int, 
+        out_feat: int) -> None:
         
         super().__init__()
 
-
-    # Backpropagation Algorithm
-    def __backprop(self, inp: torch.Tensor, out: torch.Tensor):
-        
-        return torch.autograd.grad(inp, out)
-
-    def fit(self, in_feat: int, out_feat: int, x_train: nn.Sequential, y_train: nn.Sequential, epoch_num: int):
-
-        layers = nn.Sequential(
+        self.layers = nn.Sequential(
             nn.Linear(in_feat, out_feat),
             nn.ReLU(),
             nn.Linear(out_feat, in_feat),
@@ -203,12 +192,14 @@ class lstm(nn.Module):
             nn.Linear(out_feat, in_feat)
         )
 
+    def fit(self, epoch_num: int):
+
         for i in range(epoch_num):
             
-            forward_pass = layers.forward
+            forward_pass = self.layers.forward()
             print(forward_pass)
         
-            backprop = self.__backprop(forward_pass)
+            backprop = torch.autograd.grad(forward_pass)
             print(backprop)
 
             print(f"Training loss: {loss}")
@@ -223,19 +214,15 @@ class transf(nn.Module):
 
     prec: np.float1
     
-    def __init__(self, prec: np.float16 | np.float32 | np.float64 | np.float96 | np.float128) -> None:
+    def __init__(
+        self, 
+        prec: np.float16 | np.float32 | np.float64 | np.float96 | np.float128,
+        in_feat: int, 
+        out_feat: int) -> None:
         
         super().__init__()
 
-
-    # Backpropagation Algorithm
-    def __backprop(self, inp: torch.Tensor, out: torch.Tensor):
-        
-        return torch.autograd.grad(inp, out)
-
-    def fit(self, in_feat: int, out_feat: int, x_train: nn.Sequential, y_train: nn.Sequential, epoch_num: int):
-
-        layers = nn.Sequential(
+        self.layers = nn.Sequential(
             nn.Linear(in_feat, out_feat),
             nn.ReLU(),
             nn.Linear(out_feat, in_feat),
@@ -245,12 +232,14 @@ class transf(nn.Module):
             nn.Linear(out_feat, in_feat)
         )
 
+    def fit(self, epoch_num: int):
+
         for i in range(epoch_num):
             
-            forward_pass = layers.forward
+            forward_pass = self.layers.forward()
             print(forward_pass)
         
-            backprop = self.__backprop(forward_pass)
+            backprop = torch.autograd.grad(forward_pass)
             print(backprop)
 
             print(f"Training loss: {loss}")
